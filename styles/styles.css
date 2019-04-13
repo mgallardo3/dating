@@ -1,0 +1,13 @@
+/* Main container height*/
+.main
+{
+    height: 35em !important;
+
+}
+/*image new size*/
+img
+{
+    height: 110%;
+    width: 100%;
+
+}
