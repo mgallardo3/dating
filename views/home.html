@@ -1,39 +1,55 @@
+<!--
+-@athor by Maria Gallardo.
+-@version 1.0
+-File: home.html
+
+-This file contains the main menu to display for the user as well as a create
+profile button
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
+    <link rel="stylesheet" href="./styles/styles.css">
     <title>Home</title>
 </head>
 <body>
+<!-- Create a container for the navigation bar -->
 <div class="container-fluid">
     <span class="navbar navbar-light bg-light"><p class="text-secondary">My Dating Site</p></span>
-        <div class="container ">
+
+    <!-- Create the main container for the menu -->
+        <div class="main container border mt-3">
             <div class="row">
+
+                <!-- Add a div for the welcome and reviews section -->
                 <div class="offset-0 col-lg-6 col-sm-12">
-                    <h2 class="text-center">My Dating Website</h2>
-                    <p>Welcome to the web's most successful dating website. At
+                    <h2 class="text-center mt-3">My Dating Website</h2>
+                    <p class="pr-3 pl-3">Welcome to the web's most successful dating website. At
                         <span class="font-weight-bold">My Dating Website</span>
                         you'll meet another like minded individuals. We have the highest success
                         rate of couples on the web. User's are match by interest and location.
-                        Find uut why sso many others have found love on our site!
+                        Find uot why so many others have found love on our site!
                     </p>
-                    <h3 class="text-center">Hear what our users are saying about us.</h3>
-                    <div class="m1-dark">
+                    <!-- Add the reviews section -->
+                    <h5 class="text-center">Hear what our users are saying about us.</h5>
+                    <div class="border-top border-bottom mr-3 ml-3 pr-3 pl-4">
                         <p class="font-italic">"I met the love of my life after only a month!"
                             -Andrea</p>
                         <p class="font-italic">"It was so easy to set up a profile and start meeting people.
-                            I didn't realize how many others were looking for love in my area."
+                             I didn't realize how many others were looking for love in my area."
                             -John Smith</p>
                         <p class="font-italic">"Just try it! You'll never be the same!"
                             -Sarah</p>
                     </div>
-                    <button class="btn btn-primary">Create a profile</button>
+                    <div class="text-center"><button class="mt-2 btn btn-primary">Create a profile</button></div>
                 </div>
-                <div class="offset-0 col-lg-6 col-sm-12">
-                    <img src="images/couple.jpg">
+
+                <!-- Add another div for the image-->
+                <div class="offset-0 col-lg-6 col-sm-12 p-1">
+                    <img class="rounded" src="images/couple.jpg">
                 </div>
             </div>
         </div>
