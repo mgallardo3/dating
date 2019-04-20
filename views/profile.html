@@ -1,0 +1,72 @@
+<!--
+-Maria Gallardo.
+-File: profile.html
+
+-This file contains the form to retrieve the user's input: email, state, location and
+seeking.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <title>Profile</title>
+</head>
+<body>
+
+<!--Form to retrieve user's personal information with a form-->
+
+<!-- Create a container for the navigation bar -->
+<div class="navbar navbar-light bg-light"><p class="text-secondary">My Dating Site</p></div>
+
+<!-- Create the main container for the form -->
+<div class="main container border mt-3 p-4">
+    <h2 class="pb-2 border-bottom">Profile</h2>
+    <form class="row" method="post" action="interests">
+        <div class="col-lg-7">
+
+            <!--Add the form-->
+            <label for="email" class="font-weight-bold">Email</label>
+                <div class="form-group">
+                <input type="email" id="email" class="form-control" name="email" placeholder="my_email@gmail.com">
+            </div>
+            <label for="state" class="font-weight-bold">State</label>
+             <div class="form-group">
+                 <input type="text" class="form-control" id="state" name="state" placeholder="WASHINGTON">
+            </div>
+            <label class="font-weight-bold">Seeking</label>
+            <div class="form-group">
+                <input type="radio" name="gender" value="male"> Male
+                <input type="radio" name="gender" value="female"> Female
+            </div>
+        </div>
+
+        <!-- Add another div for the Biography-->
+        <div class="form-group col-md-5">
+            <p class="font-weight-bold">Biography</p>
+            <textarea class="form-control" rows="5"
+                placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                 nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                 commodo consequat. Duis aute irure dolor in
+                 reprehenderit in voluptate velit esse cillum dolore eu
+                 fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+                  non proident, sunt in culpa q officia deserunt mollit anim
+                  id est laborum" name="biography"></textarea>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Next >">
+    </form>
+</div>
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
