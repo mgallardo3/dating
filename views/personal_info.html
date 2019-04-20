@@ -1,0 +1,75 @@
+<!--
+-Maria Gallardo.
+-File: personal_info.html
+
+-This file contains the form to retrieve the user's input: first name, last name,
+age, gender and phone number
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <title>Personal Information</title>
+</head>
+<body>
+
+<!--Form to retrieve user's personal information with a form-->
+
+<!-- Create a container for the navigation bar -->
+<div class="navbar navbar-light bg-light"><p class="text-secondary">My Dating Site</p></div>
+
+<!-- Create the main container for the form -->
+<div class="main container border mt-3 p-4">
+    <h2 class="pb-2 border-bottom">Personal Information</h2>
+    <!--Add the form-->
+    <form class="row" method="post" action="profile">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label for="fname" class="font-weight-bold">First Name</label>
+                 <input type="text" class="form-control" id="fname" name="fname" placeholder="Sarah">
+            </div>
+            <label for="lname" class="font-weight-bold">Last Name</label>
+            <div class="form-group">
+                <input type="text" id="lname" class="form-control" name="lname" placeholder="Smith">
+            </div>
+            <label for="age" class="font-weight-bold">Age</label>
+            <div class="form-group">
+                <input type="text" id="age" class="form-control" name="age" placeholder="30">
+            </div>
+
+            <label class="font-weight-bold">Gender</label>
+            <div class="form-group">
+                <input type="radio" name="gender" value="male"> Male
+               <input type="radio" name="gender" value="female"> Female
+            </div>
+            <label for="phone" class="font-weight-bold">Phone Number</label>
+            <div class="form-group">
+                <input type="tel" class="form-control" id="phone" name="phone" placeholder="222-333-444">
+            </div>
+        </div>
+
+        <!-- Add another div for the note-->
+        <div class="col-md-4">
+            <div class="jumbotron p-2 mt-4 text-center">
+                <p><span class="font-weight-bold">Note: </span>All information entered is protected
+                    by our <a href="">private policy</a>. Profile information can only viewed by others
+                    with your permission.</p>
+            </div>
+        </div>
+        <input type="submit" class="btn btn-primary float-right" id="btn-right" value="Next >">
+    </form>
+</div>
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
