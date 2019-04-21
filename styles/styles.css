@@ -1,13 +1,39 @@
-/* Main container height*/
-.main
+/*title styles*/
+.interests
 {
-    height: 35em !important;
-
-}
-/*image new size*/
-img
-{
-    height: 110%;
     width: 100%;
+}
+/** table and form styles**/
+th
+{
+    font-weight: normal;
+}
+#seeking input, #gender input
+{
+    margin-right: 5px;
+}
 
+#seeking input:nth-child(2), #gender input:nth-child(2)
+{
+    margin-left: 20px !important;
+}
+
+
+div.checkbox
+{
+    padding-left: 15px;
+}
+
+
+
+/**image styles**/
+#profile
+{
+    width: 30em;
+}
+
+#couple
+{
+    height: 100%;
+    width: 100%;
 }
