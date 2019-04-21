@@ -37,26 +37,19 @@ seeking.
                  <input type="text" class="form-control" id="state" name="state" placeholder="WASHINGTON">
             </div>
             <label class="font-weight-bold">Seeking</label>
-            <div class="form-group">
-                <input type="radio" name="gender" value="male"> Male
-                <input type="radio" name="gender" value="female"> Female
+            <div id="seeking" class="form-group">
+                <input type="radio" name="seeking" value="male">Male
+                <input type="radio" name="seeking" value="female"> Female
             </div>
         </div>
 
         <!-- Add another div for the Biography-->
         <div class="form-group col-md-5">
-            <p class="font-weight-bold">Biography</p>
+            <label for="bio" class="font-weight-bold">Biography</label>
             <textarea class="form-control" rows="5"
-                placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                 nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                 commodo consequat. Duis aute irure dolor in
-                 reprehenderit in voluptate velit esse cillum dolore eu
-                 fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                  non proident, sunt in culpa q officia deserunt mollit anim
-                  id est laborum" name="biography"></textarea>
+                placeholder="Tell us a little bit about your self..." id="bio" name="biography"></textarea>
         </div>
-        <input type="submit" class="btn btn-primary" value="Next >">
+        <input type="submit" class="btn btn-primary offset-11" value="Next >">
     </form>
 </div>
 
