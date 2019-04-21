@@ -1,0 +1,134 @@
+<!--
+-Maria Gallardo.
+-File: interests.html
+
+-This file contains some checkboxes that the user can pick as their interests
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <title>Profile</title>
+</head>
+<body>
+
+<!--Form to retrieve user's personal information with a form-->
+
+<!-- Create a container for the navigation bar -->
+<div class="navbar navbar-light bg-light"><p class="text-secondary">My Dating Site</p></div>
+
+<!-- Create the main container for the form -->
+<div class="main container border mt-3 p-4">
+    <h2 class="pb-2 border-bottom">Interests</h2>
+    <form class="row" method="post" action="summary">
+
+        <!--indoor interests-->
+        <p class="font-weight-bold interests pl-3">In-door Interests</p>
+        <div class="col-lg-3">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="interest[]" value="tv"> tv
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="interest[]" value="puzzles"> puzzles
+                </label>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="interest[]" value="movies"> movies
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="interest[]" value="reading"> reading
+                </label>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="interest[]" value="cooking"> cooking
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="interest[]" value="cards"> playing cards
+                </label>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="interest[]" value="board"> board games
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="interest[]" value="video"> video games
+                </label>
+            </div>
+        </div>
+
+        <!--Out door interests-->
+        <p class="font-weight-bold interests pl-3 mt-2">Out-door Interests</p>
+        <div class="col-lg-3">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="interest[]" value="hiking"> hiking
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="interest[]" value="walking"> walking
+                </label>
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="interest[]" value="biking"> biking
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="interest[]" value="climbing"> climbing
+                </label>
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="interest[]" value="swimming"> swimming
+                </label>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="interest[]" value="collecting"> collecting
+                </label>
+            </div>
+        </div>
+        <input type="submit" class="btn btn-primary float-right" id="btn-right" value="Next >">
+    </form>
+</div>
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
