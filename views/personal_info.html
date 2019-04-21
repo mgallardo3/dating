@@ -24,6 +24,7 @@ age, gender and phone number
 <!-- Create the main container for the form -->
 <div class="main container border mt-3 p-4">
     <h2 class="pb-2 border-bottom">Personal Information</h2>
+
     <!--Add the form-->
     <form class="row" method="post" action="profile">
         <div class="col-md-8">
@@ -41,7 +42,7 @@ age, gender and phone number
             </div>
 
             <label class="font-weight-bold">Gender</label>
-            <div class="form-group">
+            <div id="gender" class="form-group">
                 <input type="radio" name="gender" value="male"> Male
                <input type="radio" name="gender" value="female"> Female
             </div>
@@ -59,7 +60,7 @@ age, gender and phone number
                     with your permission.</p>
             </div>
         </div>
-        <input type="submit" class="btn btn-primary float-right" id="btn-right" value="Next >">
+        <input type="submit" class="btn btn-primary offset-11" value="Next >">
     </form>
 </div>
 
