@@ -1,0 +1,78 @@
+<!--
+-Maria Gallardo.
+-File: summary.html
+
+-This file contains the summary for the user profile collected from other forms.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <title>Summary</title>
+</head>
+<body>
+
+<!--Form to retrieve user's personal information with a form-->
+
+<!-- Create a container for the navigation bar -->
+<div class="navbar navbar-light bg-light"><p class="text-secondary">My Dating Site</p></div>
+
+<!-- Create the main container for the summary table, photo and bio -->
+<div class="main container border mt-3 p-4">
+
+    <!--Add the summary table-->
+    <form class="row">
+        <div class="col-md-6">
+            <table class="table border">
+                <tbody>
+                <tr>
+                    <th>Name: {{$_SESSION['fname']}} {{$_SESSION['lname']}}</th>
+                </tr>
+                <tr>
+                    <th>Gender: {{$_SESSION['gender']}}</th>
+                </tr>
+                <tr>
+                    <th>Age: {{$_SESSION['age']}}</th>
+                </tr>
+                <tr>
+                    <th>Phone: {{$_SESSION['phone']}}</th>
+                </tr>
+                <tr>
+                    <th>Email: {{$_SESSION['email']}}</th>
+                </tr>
+                <tr>
+                    <th>State: {{$_SESSION['state']}}</th>
+                </tr>
+                <tr>
+                    <th>Seeking: {{$_SESSION['seeking']}}</th>
+                </tr>
+                <tr>
+                    <th>Interests: {{$_SESSION['interests']}}</th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Add another div for the profile photo and bio-->
+        <div class="col-md-6">
+            <img class="rounded" src="images/profile.jpg" id="profile" alt="profile picture">
+            <h4 class="pl-3 font-weight-normal mt-2">Biography</h4>
+            <p class="col-md-11 pr-4 text-center">{{$_SESSION['biography']}}</p>
+        </div>
+        <input type="submit" class="btn btn-primary offset-5" value="Contact Me!">
+    </form>
+</div>
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
