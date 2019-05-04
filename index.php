@@ -7,22 +7,22 @@
  * This file is the controller that routes the user to the home page
  */
 
-
 //Start a session
 session_start();
 
 //Turn on error reporting
-ini_set('display_errors' ,1);
+ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-//require autoload file
+//Required file
 require_once('vendor/autoload.php');
+require_once('model/validate-data.php');
 
-//create an instance of the Base class
-$f3 = Base:: instance();
+//Instantiate Fat-Free
+$f3 = Base::instance();
 
-//Turn on Fat-free error reporting
-$f3 -> set('DEBUG', 3);
+//Turn on Fat-Free error reporting
+$f3->set('DEBUG', 3);
 
 //Define a default route
 $f3->route('GET /', FUNCTION()
@@ -33,15 +33,46 @@ $f3->route('GET /', FUNCTION()
 });
 
 //Add a post route
-$f3->route('POST /personal-information', FUNCTION()
+$f3->route('GET|POST /personal-information', FUNCTION($f3)
 {
+    //if a request has being submitted
+    if(!empty($_POST))
+    {
+        //retrieve data
+        //Get data from form
+        $fname = $_POST['fname'];
+        $lname = $_POST['lname'];
+        $age = $_POST['age'];
+        $gender = $_POST['gender'];
+        $phone = $_POST['phone'];
+
+        //Add data to hive
+        $f3->set('fname', $fname);
+        $f3->set('lname', $lname);
+        $f3->set('age', $age);
+        $f3->set('gender',$gender);
+        $f3->set('phone', $phone);
+
+        if(validForm())
+        {
+            $_SESSION['fname'] = $fname;
+            $_SESSION['lname'] = $lname;
+            $_SESSION['age'] = $age;
+            $_SESSION['gender'] = $gender;
+            $_SESSION['phone'] = $phone;
+
+            //Redirect to Summary
+            $f3->reroute('/profile');
+        }
+
+    }
     //display a view
     $view = new Template();
     echo $view-> render('views/personal_info.html');
 });
 
 //Add a post route
-$f3->route('POST /profile', FUNCTION()
+$f3->route('GET|POST /profile', FUNCTION()
 {
     //Store the fields from personal-information using a SESSION
     $_SESSION['fname'] = $_POST['fname'];
