@@ -18,12 +18,10 @@ th
     margin-left: 20px !important;
 }
 
-
 div.checkbox
 {
     padding-left: 15px;
 }
-
 
 
 /**image styles**/
@@ -36,4 +34,10 @@ div.checkbox
 {
     height: 100%;
     width: 100%;
+}
+
+/** other classes**/
+.err
+{
+    color:rgba(182, 11, 18, 0.43);
 }
