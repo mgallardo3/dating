@@ -26,29 +26,47 @@ age, gender and phone number
     <h2 class="pb-2 border-bottom">Personal Information</h2>
 
     <!--Add the form-->
-    <form class="row" method="post" action="profile">
+    <form class="row" method="post" action="#">
         <div class="col-md-8">
             <div class="form-group">
                 <label for="fname" class="font-weight-bold">First Name</label>
-                 <input type="text" class="form-control" id="fname" name="fname" placeholder="Sarah">
+                 <input type="text" class="form-control" id="fname" name="fname" placeholder="Sarah"
+                        value="{{ @fname }}">
+                <check if="{{ @errors['fname'] }}">
+                    <span class="err">{{ @errors['fname'] }}</span>
+                </check>
             </div>
             <label for="lname" class="font-weight-bold">Last Name</label>
             <div class="form-group">
-                <input type="text" id="lname" class="form-control" name="lname" placeholder="Smith">
+                <input type="text" id="lname" class="form-control" name="lname" placeholder="Smith"
+                 value="{{ @lname }}">
+                <check if="{{ @errors['lname'] }}">
+                    <span class="err">{{ @errors['lname'] }}</span>
+                </check>
             </div>
             <label for="age" class="font-weight-bold">Age</label>
             <div class="form-group">
-                <input type="text" id="age" class="form-control" name="age" placeholder="30">
+                <input type="text" id="age" class="form-control" name="age" placeholder="30"
+                 value="{{ @age }}">
+                <check if="{{ @errors['age'] }}">
+                    <span class="err">{{ @errors['age'] }}</span>
+                </check>
             </div>
 
             <label class="font-weight-bold">Gender</label>
             <div id="gender" class="form-group">
-                <input type="radio" name="gender" value="male"> Male
-               <input type="radio" name="gender" value="female"> Female
+                <input type="radio" name="gender" value="male"
+                <check if="{{ @gender == male }}">checked</check>> Male
+               <input type="radio" name="gender" value="female"
+                <check if="{{ @gender == female }}">checked</check>> Female
             </div>
             <label for="phone" class="font-weight-bold">Phone Number</label>
             <div class="form-group">
-                <input type="tel" class="form-control" id="phone" name="phone" placeholder="222-333-444">
+                <input type="tel" class="form-control" id="phone" name="phone"  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                       placeholder="222-333-444" value="{{ @phone }}" maxlength="12">
+                <check if="{{ @errors['phone'] }}">
+                    <span class="err">{{ @errors['phone'] }}</span>
+                </check>
             </div>
         </div>
 
