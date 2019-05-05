@@ -35,9 +35,31 @@ function validForm()
         $f3->set("errors['phone']", "Enter a phone number using the following format: 
         222-333-4444");
     }
+    return $isValid;
+}
+
+function validProfile()
+{
+    global $f3;
+    $isValid = true;
+
+    if(!validEmail($f3->get('email')))
+    {
+        $isValid = false;
+        $f3->set("errors['email']",'Enter a valid email');
+    }
+
+    if(!validState($f3->get('state'), $f3->get('states')))
+    {
+        echo 'wrong';
+        $isValid = false;
+        $f3->set("errors['state']" , "Not a valid state");
+        echo $f3->get("errors['state']");
+    }
 
     return $isValid;
 }
+
 
 function validFname($fname)
 {
@@ -57,4 +79,15 @@ function validAGe($age)
 function validPhone($phone)
 {
     return !empty($phone)&& $phone[3] == "-" && $phone[7] == "-" && strlen($phone) == 12;
+}
+
+function validEmail($email)
+{
+    return (!empty($email) && strpos($email, '@') && !strpos($email, " "));
+
+}
+
+function validState($state,$array)
+{
+    return in_array($state, $array);
 }
