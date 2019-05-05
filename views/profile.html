@@ -24,29 +24,39 @@ seeking.
 <!-- Create the main container for the form -->
 <div class="main container border mt-3 p-4">
     <h2 class="pb-2 border-bottom">Profile</h2>
-    <form class="row" method="post" action="interests">
+    <form class="row" method="post" action="#">
         <div class="col-lg-7">
 
             <!--Add the form-->
             <label for="email" class="font-weight-bold">Email</label>
                 <div class="form-group">
-                <input type="email" id="email" class="form-control" name="email" placeholder="my_email@gmail.com">
+                <input type="text" id="email" class="form-control" name="email" placeholder="my_email@gmail.com"
+                    value="{{ @email }}">
+                    <check if="{{ @errors['email'] }}">
+                        <span class="err">{{ @errors['email'] }}</span>
+                    </check>
             </div>
+
             <label for="state" class="font-weight-bold">State</label>
             <div class="form-group">
-                 <select id="state" name="state" class="form-control">
-                     <option value="Washington">WASHINGTON</option>
-                     <option value="Oregon">OREGON</option>
-                     <option value="Idaho">IDAHO</option>
-                     <option value="Montana">MONTANA</option>
-                     <option value="Wyoming">WYOMING</option>
-                     <option value="Alaska">ALASKA</option>
+                <select id="state" name="state" class="form-control">
+                    <repeat group="{{ @states }}" value="{{ @eachState }}">
+                        <option value="{{ @eachState }}"
+                        <check if="{{ @eachState == @state }}">selected
+                        </check>>{{ @eachState }}</option>
+                    </repeat>
                 </select>
+                <check if="{{ @errors['email'] }}">
+                    <span class="err">{{ @errors['state'] }}</span>
+                </check>
             </div>
+
             <label class="font-weight-bold">Seeking</label>
             <div id="seeking" class="form-group">
-                <input type="radio" name="seeking" value="male">Male
-                <input type="radio" name="seeking" value="female"> Female
+                <input type="radio" name="seeking" value="male"
+                <check if="{{ @seeking== male }}">checked</check>>Male
+                <input type="radio" name="seeking" value="female"
+                <check if="{{ @seeking == female}}">checked</check>>Female
             </div>
         </div>
 
@@ -54,7 +64,8 @@ seeking.
         <div class="form-group col-md-5">
             <label for="bio" class="font-weight-bold">Biography</label>
             <textarea class="form-control" rows="5"
-                placeholder="Tell us a little bit about your self..." id="bio" name="biography"></textarea>
+                placeholder="Tell us a little bit about your self..." id="bio"
+                      name="bio">{{ @bio }}</textarea>
         </div>
         <input type="submit" class="btn btn-primary offset-11" value="Next >">
     </form>
