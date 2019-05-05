@@ -24,6 +24,9 @@ $f3 = Base::instance();
 //Turn on Fat-Free error reporting
 $f3->set('DEBUG', 3);
 
+//Create states array
+ $f3->set('states',array('WASHINGTON','OREGON','IDAHO','MONTANA','WYOMING','ALASKA'));
+
 //Define a default route
 $f3->route('GET /', FUNCTION()
 {
@@ -72,28 +75,40 @@ $f3->route('GET|POST /personal-information', FUNCTION($f3)
 });
 
 //Add a post route
-$f3->route('GET|POST /profile', FUNCTION()
+$f3->route('GET|POST /profile', FUNCTION($f3)
 {
-    //Store the fields from personal-information using a SESSION
-    $_SESSION['fname'] = $_POST['fname'];
-    $_SESSION['lname']= $_POST['lname'];
-    $_SESSION['age'] = $_POST['age'];
-    $_SESSION['gender'] = $_POST['gender'];
-    $_SESSION['phone'] = $_POST['phone'];
+    if(!empty($_POST))
+    {
+        $email = $_POST['email'];
+        $state = $_POST['state'];
+        $seeking = $_POST['seeking'];
+        $bio = $_POST['bio'];
 
+        //store to F3 variables
+        $f3->set('email',$email);
+        $f3 ->set('state',$state);
+        $f3 ->set('seeking',$seeking);
+        $f3->set('bio',$bio);
+
+        if(validProfile())
+        {
+            $_SESSION['email'] = $email;
+            $_SESSION['state'] = $state;
+            $_SESSION['seeking'] = $seeking;
+            $_SESSION['bio'] = $bio;
+
+            $f3->reroute('/interests');
+        }
+    }
     //display a view
     $view = new Template();
     echo $view-> render('views/profile.html');
 });
 
 //Add a post route
-$f3->route('POST /interests', FUNCTION()
+$f3->route('GET|POST /interests', FUNCTION()
 {
-    //Store the fields from profile page using the SESSION
-    $_SESSION['email'] = $_POST['email'];
-    $_SESSION['state']= $_POST['state'];
-    $_SESSION['seeking'] = $_POST['seeking'];
-    $_SESSION['biography'] = $_POST['biography'];
+
 
     //display a view
     $view = new Template();
