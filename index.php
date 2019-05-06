@@ -27,6 +27,13 @@ $f3->set('DEBUG', 3);
 //Create states array
  $f3->set('states',array('WASHINGTON','OREGON','IDAHO','MONTANA','WYOMING','ALASKA'));
 
+ //Create indoor activities
+$f3->set('indoor', array('tv','movies','cooking','board games','puzzles','reading','playing cards',
+    'video games'));
+
+//Create outdoor activities array
+$f3->set('outdoor', array('hiking','biking','swimming','collecting','walking','climbing'));
+
 //Define a default route
 $f3->route('GET /', FUNCTION()
 {
@@ -106,9 +113,23 @@ $f3->route('GET|POST /profile', FUNCTION($f3)
 });
 
 //Add a post route
-$f3->route('GET|POST /interests', FUNCTION()
+$f3->route('GET|POST /interests', FUNCTION($f3)
 {
+    if(!empty($_POST))
+    {
+        //store user information
+        $interests= $_POST['interests'];
 
+        //store to F3 variables
+        $f3->set('interests',$interests);
+
+        if(validateActivity())
+        {
+            $_SESSION['interests'] = implode(', ', $interests);
+            $f3->reroute('/summary');
+
+        }
+    }
 
     //display a view
     $view = new Template();
@@ -116,25 +137,8 @@ $f3->route('GET|POST /interests', FUNCTION()
 });
 
 //Add a post route
-$f3->route('POST /summary', FUNCTION()
+$f3->route('GET|POST /summary', FUNCTION()
 {
-    //Store the fields from interests page in an 'interests' array in SESSION
-    $_SESSION['interests'] = $_POST['interest'];
-
-    //check if interests were selected
-    if(isset($_SESSION['interests']))
-    {
-        $stringInterests ='';
-
-        //Loop through interests, concatenate values to a string
-        foreach ($_SESSION['interests'] as $interest)
-        {
-            $stringInterests .= $interest .=" ";
-        }
-        //store string of Interests back into SESSION
-        $_SESSION['interests'] = $stringInterests;
-    }
-
     //display a view
     $view = new Template();
     echo $view-> render('views/summary.html');
