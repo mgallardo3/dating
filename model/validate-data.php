@@ -51,10 +51,8 @@ function validProfile()
 
     if(!validState($f3->get('state'), $f3->get('states')))
     {
-        echo 'wrong';
         $isValid = false;
         $f3->set("errors['state']" , "Not a valid state");
-        echo $f3->get("errors['state']");
     }
 
     return $isValid;
@@ -90,4 +88,34 @@ function validEmail($email)
 function validState($state,$array)
 {
     return in_array($state, $array);
+}
+
+function validateActivity()
+{
+    //retrieve the information and store it from variables
+    global $f3;
+    $array = $f3->get('interests');
+    $outdoor = $f3->get('outdoor');
+    $indoor = $f3->get('indoor');
+    $isValid = true;
+
+    //return true if array is empty
+    if(empty($f3->get('interests')))
+    {
+        $isValid = true;
+    }
+    else
+    {
+        //Make sure activities are valid
+        foreach ($array as $activity)
+        {
+            //if the activity is not in the list return false
+            if (!in_array($activity , $outdoor) && !in_array($activity , $indoor))
+            {
+                $isValid = false;
+                $f3->set("errors['interests']","Enter only valid activities");
+            }
+        }
+    }
+    return $isValid;
 }
