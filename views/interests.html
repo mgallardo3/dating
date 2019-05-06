@@ -22,102 +22,30 @@
 
 <!-- Create the main container for the form -->
 <div class="main container border mt-3 p-4">
+    <check if="{{ @errors['interests'] }}">
+        <span class="err">{{ @errors['interests'] }}</span>
+    </check>
     <h2 class="pb-2 border-bottom">Interests</h2>
-    <form class="row" method="post" action="summary">
-
+    <form class="row" method="post" action="#">
         <!--indoor interests-->
         <p class="font-weight-bold interests pl-3">In-door Interests</p>
-        <div class="col-lg-3">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="interest[]" value="tv"> tv
-                </label>
+        <repeat group="{{ @indoor }}" value="{{ @activity}}">
+            <div class="col-lg-3">
+            <label><input type="checkbox" name="interests[]" value="{{ @activity }}"
+                <check if="{{ !empty(@interests) && in_array(@activity, @interests) }}">
+                    checked</check>> {{ @activity }}</label>
             </div>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="interest[]" value="puzzles"> puzzles
-                </label>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="interest[]" value="movies"> movies
-                </label>
-            </div>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="interest[]" value="reading"> reading
-                </label>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="interest[]" value="cooking"> cooking
-                </label>
-            </div>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="interest[]" value="playing cards"> playing cards
-                </label>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="interest[]" value="board games"> board games
-                </label>
-            </div>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="interest[]" value="video games"> video games
-                </label>
-            </div>
-        </div>
+        </repeat>
 
         <!--Out door interests-->
         <p class="font-weight-bold interests pl-3 mt-2">Out-door Interests</p>
-        <div class="col-lg-3">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="interest[]" value="hiking"> hiking
-                </label>
+        <repeat group="{{ @outdoor }}" value="{{ @activity }}">
+            <div class="col-lg-3">
+            <label><input type="checkbox" name="interests[]" value="{{ @activity }}"
+                <check if="{{ !empty(@interests) && in_array(@activity, @interests) }}">
+                    checked</check>> {{ @activity }}</label>
             </div>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="interest[]" value="walking"> walking
-                </label>
-            </div>
-        </div>
-
-        <div class="col-lg-3">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="interest[]" value="biking"> biking
-                </label>
-            </div>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="interest[]" value="climbing"> climbing
-                </label>
-            </div>
-        </div>
-
-        <div class="col-lg-3">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="interest[]" value="swimming"> swimming
-                </label>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="interest[]" value="collecting"> collecting
-                </label>
-            </div>
-        </div>
+        </repeat>
         <input type="submit" class="btn btn-primary offset-11" value="Next >">
     </form>
 </div>
