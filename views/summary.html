@@ -29,28 +29,28 @@
             <table class="table border">
                 <tbody>
                 <tr>
-                    <th>Name: {{$_SESSION['fname']}} {{$_SESSION['lname']}}</th>
+                    <th>Name: {{ @member->getFname() }} {{ @member->getLname() }}</th>
                 </tr>
                 <tr>
-                    <th>Gender: {{$_SESSION['gender']}}</th>
+                    <th>Gender: {{ @member->getGender() }}</th>
                 </tr>
                 <tr>
-                    <th>Age: {{$_SESSION['age']}}</th>
+                    <th>Age: {{ @member->getAge() }}</th>
                 </tr>
                 <tr>
-                    <th>Phone: {{$_SESSION['phone']}}</th>
+                    <th>Phone: {{ @member->getPhone() }}</th>
                 </tr>
                 <tr>
-                    <th>Email: {{$_SESSION['email']}}</th>
+                    <th>Email: {{ @member->getEmail() }}</th>
                 </tr>
                 <tr>
-                    <th>State: {{$_SESSION['state']}}</th>
+                    <th>State: {{ @member->getState() }}</th>
                 </tr>
                 <tr>
-                    <th>Seeking: {{$_SESSION['seeking']}}</th>
+                    <th>Seeking: {{ @member->getSeeking() }}</th>
                 </tr>
                 <tr>
-                    <th>Interests: {{$_SESSION['interests']}}</th>
+                    <th>Interests: {{ @member->getIndoorInterests() }} {{ @member->getOutDoorInterests() }}</th>
                 </tr>
                 </tbody>
             </table>
@@ -60,7 +60,7 @@
         <div class="col-md-6">
             <img class="rounded" src="images/profile.jpg" id="profile" alt="profile picture">
             <h4 class="pl-3 font-weight-normal mt-2">Biography</h4>
-            <p class="col-md-11 pr-4 text-center">{{$_SESSION['biography']}}</p>
+            <p class="col-md-11 pr-4 text-center">{{ @member->getBio() }}</p>
         </div>
         <input type="submit" class="btn btn-primary offset-5" value="Contact Me!">
     </form>
