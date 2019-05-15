@@ -7,8 +7,6 @@
  * This file is the controller that routes the user to the home page
  */
 
-//Start a session
-session_start();
 
 //Turn on error reporting
 ini_set('display_errors', 1);
@@ -17,6 +15,9 @@ error_reporting(E_ALL);
 //Required file
 require_once('vendor/autoload.php');
 require_once('model/validate-data.php');
+
+//Start a session
+session_start();
 
 //Instantiate Fat-Free
 $f3 = Base::instance();
@@ -46,10 +47,10 @@ $f3->route('GET /', FUNCTION()
 $f3->route('GET|POST /personal-information', FUNCTION($f3)
 {
     //if a request has being submitted
-    if(!empty($_POST))
-    {
+    if(!empty($_POST)) {
         //retrieve data
         //Get data from form
+        $premium = $_POST['premium'];
         $fname = $_POST['fname'];
         $lname = $_POST['lname'];
         $age = $_POST['age'];
@@ -63,15 +64,20 @@ $f3->route('GET|POST /personal-information', FUNCTION($f3)
         $f3->set('gender',$gender);
         $f3->set('phone', $phone);
 
-        if(validForm())
-        {
-            $_SESSION['fname'] = $fname;
-            $_SESSION['lname'] = $lname;
-            $_SESSION['age'] = $age;
-            $_SESSION['gender'] = $gender;
-            $_SESSION['phone'] = $phone;
+        if(validForm()) {
+            if(!empty($premium)){
 
-            //Redirect to Summary
+                //create a premium user
+                $user = new PremiumMember($fname,$lname,$age,$phone,$gender);
+                $_SESSION['user'] = serialize($user);
+
+            } else {
+                //Create a regular user
+                //create a premium user
+                $user = new Member($fname,$lname,$age,$phone,$gender);
+                $_SESSION['user'] = serialize($user);
+
+            }
             $f3->reroute('/profile');
         }
 
@@ -84,8 +90,8 @@ $f3->route('GET|POST /personal-information', FUNCTION($f3)
 //Add a post route
 $f3->route('GET|POST /profile', FUNCTION($f3)
 {
-    if(!empty($_POST))
-    {
+    if(!empty($_POST)) {
+
         $email = $_POST['email'];
         $state = $_POST['state'];
         $seeking = $_POST['seeking'];
@@ -97,17 +103,28 @@ $f3->route('GET|POST /profile', FUNCTION($f3)
         $f3 ->set('seeking',$seeking);
         $f3->set('bio',$bio);
 
-        if(validProfile())
-        {
-            $_SESSION['email'] = $email;
-            $_SESSION['state'] = $state;
-            $_SESSION['seeking'] = $seeking;
-            $_SESSION['bio'] = $bio;
+        if(validProfile()) {
+            $member = unserialize($_SESSION['user']);
+            $member->setEmail($email);
+            $member->setState($state);
+            $member->setSeeking($seeking);
+            $member->setBio($bio);
 
-            $f3->reroute('/interests');
+            //add member back to session
+            $_SESSION['user'] = serialize($member);
+
+            //if class member is premium go to interests
+            if ($member instanceof PremiumMember) {
+
+                $f3->reroute('interests');
+
+            } else {
+                //else (member is not premium) reroute to the summary
+                $f3->reroute('summary');
+            }
         }
     }
-    //display a view
+
     $view = new Template();
     echo $view-> render('views/profile.html');
 });
@@ -115,19 +132,46 @@ $f3->route('GET|POST /profile', FUNCTION($f3)
 //Add a post route
 $f3->route('GET|POST /interests', FUNCTION($f3)
 {
-    if(!empty($_POST))
-    {
+    if(!empty($_POST)) {
         //store user information
-        $interests= $_POST['interests'];
+        $indoor= $_POST['indoor'];
+        $outdoor= $_POST['outdoor'];
+
+        //retrieve the object from the session
+        $member = unserialize($_SESSION['user']);
+
+        //check if both interests are set, store into one variable for the validate-data
+        if(!empty($indoor) && !empty($outdoor)) {
+            $interests = array_merge($indoor,$outdoor);
+
+            //store the information into the member object
+            $member->setIndoorInterests(implode($indoor));
+            $member->setOutDoorInterests(implode($outdoor));
+        }
+        else if(!empty($indoor)){
+            $interests = $indoor;
+            $member->setIndoorInterests(implode($indoor));
+
+        }
+        else{
+            $interests = $outdoor;
+            $member->setOutDoorInterests(implode($outdoor));
+
+        }
 
         //store to F3 variables
         $f3->set('interests',$interests);
 
-        if(validateActivity())
-        {
-            $_SESSION['interests'] = implode(', ', $interests);
-            $f3->reroute('/summary');
+        //if data is valid proceed to save data
+        if(validateActivity()) {
 
+            //if interests were selected use the implode method
+            if(!empty($interests)) {
+
+                //store the object back into the session
+                $_SESSION['user'] = serialize($member);
+            }
+            $f3->reroute('/summary');
         }
     }
 
@@ -137,13 +181,19 @@ $f3->route('GET|POST /interests', FUNCTION($f3)
 });
 
 //Add a post route
-$f3->route('GET|POST /summary', FUNCTION()
+$f3->route('GET|POST /summary', FUNCTION($f3)
 {
+    $member = unserialize($_SESSION['user']);
+
+    //add member to F3
+    $f3->set('member',$member);
+
     //display a view
     $view = new Template();
     echo $view-> render('views/summary.html');
 });
 
+$_SESSION[]='';
 
 $f3 -> run();
 
