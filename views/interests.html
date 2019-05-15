@@ -31,7 +31,7 @@
         <p class="font-weight-bold interests pl-3">In-door Interests</p>
         <repeat group="{{ @indoor }}" value="{{ @activity}}">
             <div class="col-lg-3">
-            <label><input type="checkbox" name="interests[]" value="{{ @activity }}"
+            <label><input type="checkbox" name="indoor[]" value="{{ @activity }}"
                 <check if="{{ !empty(@interests) && in_array(@activity, @interests) }}">
                     checked</check>> {{ @activity }}</label>
             </div>
@@ -41,11 +41,12 @@
         <p class="font-weight-bold interests pl-3 mt-2">Out-door Interests</p>
         <repeat group="{{ @outdoor }}" value="{{ @activity }}">
             <div class="col-lg-3">
-            <label><input type="checkbox" name="interests[]" value="{{ @activity }}"
+            <label><input type="checkbox" name="outdoor[]" value="{{ @activity }}"
                 <check if="{{ !empty(@interests) && in_array(@activity, @interests) }}">
                     checked</check>> {{ @activity }}</label>
             </div>
         </repeat>
+        <input type="hidden" value="empty" name="empty" checked>
         <input type="submit" class="btn btn-primary offset-11" value="Next >">
     </form>
 </div>
