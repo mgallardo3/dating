@@ -1,7 +1,6 @@
 <!--
 -Maria Gallardo.
 -File: summary.html
-
 -This file contains the summary for the user profile collected from other forms.
 -->
 <!DOCTYPE html>
@@ -29,29 +28,38 @@
             <table class="table border">
                 <tbody>
                 <tr>
-                    <th>Name: {{ @member->getFname() }} {{ @member->getLname() }}</th>
+                    <th>Name: {{ $_SESSION['user']->getFname() }} {{ $_SESSION['user']->getLname() }}</th>
                 </tr>
                 <tr>
-                    <th>Gender: {{ @member->getGender() }}</th>
+                    <th>Gender: {{ $_SESSION['user']->getGender() }}</th>
                 </tr>
                 <tr>
-                    <th>Age: {{ @member->getAge() }}</th>
+                    <th>Age: {{ $_SESSION['user']->getAge() }}</th>
                 </tr>
                 <tr>
-                    <th>Phone: {{ @member->getPhone() }}</th>
+                    <th>Phone: {{ $_SESSION['user']->getPhone() }}</th>
                 </tr>
                 <tr>
-                    <th>Email: {{ @member->getEmail() }}</th>
+                    <th>Email: {{ $_SESSION['user']->getEmail() }}</th>
                 </tr>
                 <tr>
-                    <th>State: {{ @member->getState() }}</th>
+                    <th>State: {{ $_SESSION['user']->getState() }}</th>
                 </tr>
                 <tr>
-                    <th>Seeking: {{ @member->getSeeking() }}</th>
+                    <th>Seeking: {{ $_SESSION['user']->getSeeking() }}</th>
                 </tr>
-                <tr>
-                    <th>Interests: {{ @member->getIndoorInterests() }} {{ @member->getOutDoorInterests() }}</th>
-                </tr>
+                <check if="{{ $_SESSION['user'] instanceof PremiumMember }}">
+                    <tr>
+                        <th>Interests:
+                            <check if="{{ $_SESSION['user']->getInDoorInterests() }}!='' ">
+                                {{ $_SESSION['user']->getInDoorInterests() }}
+                            </check>
+                            <check if="{{ $_SESSION['user']->getOutDoorInterests() }}!='' ">
+                                {{ $_SESSION['user']->getOutDoorInterests() }}
+                            </check>
+                           </th>
+                    </tr>
+                </check>
                 </tbody>
             </table>
         </div>
@@ -60,7 +68,7 @@
         <div class="col-md-6">
             <img class="rounded" src="images/profile.jpg" id="profile" alt="profile picture">
             <h4 class="pl-3 font-weight-normal mt-2">Biography</h4>
-            <p class="col-md-11 pr-4 text-center">{{ @member->getBio() }}</p>
+            <p class="col-md-11 pr-4 text-center">{{ $_SESSION['user']->getBio() }}</p>
         </div>
         <input type="submit" class="btn btn-primary offset-5" value="Contact Me!">
     </form>
