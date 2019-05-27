@@ -35,6 +35,9 @@ $f3->set('indoor', array('tv','movies','cooking','board games','puzzles','readin
 //Create outdoor activities array
 $f3->set('outdoor', array('hiking','biking','swimming','collecting','walking','climbing'));
 
+//instantiate database object, connection
+$db = new Database();
+
 //Define a default route
 $f3->route('GET /', FUNCTION()
 {
@@ -137,18 +140,18 @@ $f3->route('GET|POST /interests', FUNCTION($f3)
             $interests = array_merge($indoor,$outdoor);
 
             //store the information into the member object
-            $_SESSION['user']->setInDoorInterests(implode($indoor));
-            $_SESSION['user']->setOutDoorInterests(implode($outdoor));
+            $_SESSION['user']->setInDoorInterests(($indoor));
+            $_SESSION['user']->setOutDoorInterests(($outdoor));
 
         } else if(!empty($indoor)){
             $interests = $indoor;
-            $_SESSION['user']->setInDoorInterests(implode($indoor));
+            $_SESSION['user']->setInDoorInterests(($indoor));
             $_SESSION['user']->setOutDoorInterests("");
 
 
         } else if(!empty($outdoor)){
             $interests = $outdoor;
-            $_SESSION['user']->setOutDoorInterests(implode($outdoor));
+            $_SESSION['user']->setOutDoorInterests(($outdoor));
             $_SESSION['user']->setInDoorInterests("");
         }
         else
@@ -175,14 +178,32 @@ $f3->route('GET|POST /interests', FUNCTION($f3)
 //Add a post route
 $f3->route('GET|POST /summary', FUNCTION($f3)
 {
+    global $db;
     $member =$_SESSION['user'];
 
     //add member to F3
     $f3->set('member',$member);
 
+    //insert the new user to the database
+    $db->insertMembers();
+
     //display a view
     $view = new Template();
     echo $view-> render('views/summary.html');
+});
+
+$f3->route('GET /admin', FUNCTION($f3)
+{
+    //retrieve members from database
+    global $db;
+    $members = $db->getMembers();
+
+    $f3->set("db",$db);
+    $f3->set('members',$members);
+
+    //display a view
+    $view = new Template();
+    echo $view-> render('views/admin.html');
 });
 
 $f3 -> run();
