@@ -1,0 +1,69 @@
+<!--
+-@athor by Maria Gallardo.
+-@version 1.0
+-File: admin.html
+
+-This file contains a table that displays all the users that have sign up for the dating site
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <title>All Users</title>
+</head>
+<body>
+<!-- Create a container for the navigation bar -->
+<div class="navbar navbar-light bg-light"><p class="text-secondary">
+    <a href="Admin">Admin </a> My Dating Site</p></div>
+<div class="container"><table class="table">
+    <thead>
+        <tr>
+            <th class="font-weight-bold">ID</th>
+            <th class="font-weight-bold">Name</th>
+            <th class="font-weight-bold">Age</th>
+            <th class="font-weight-bold">Phone</th>
+            <th class="font-weight-bold">Email</th>
+            <th class="font-weight-bold">State</th>
+            <th class="font-weight-bold">Gender</th>
+            <th class="font-weight-bold">Seeking</th>
+            <th class="font-weight-bold">Premium</th>
+            <th class="font-weight-bold">Interests</th>
+        </tr>
+    </thead>
+    <tbody>
+    <repeat group="{{ @members }}" value="{{ @member }}">
+        <tr>
+            <td>{{ @member['member_id'] }}</td>
+            <td>{{ @member['fname'] }}  {{ @member['lname'] }}</td>
+            <td>{{ @member['age'] }}</td>
+            <td>{{ @member['phone'] }}</td>
+            <td>{{ @member['email'] }}</td>
+            <td>{{ @member['state'] }}</td>
+            <td>{{ @member['gender'] }}</td>
+            <td>{{ @member['seeking'] }}</td>
+            <td><input type="checkbox"
+                <check if="{{ @member['premium'] }} ==1">checked</check>>
+            </td>
+            <td><check if="{{ @member['premium'] }} ==1">
+                <check if="{{ @db->getInterests(@member['member_id']) }}!=null">
+                </check>
+            </check></td>
+        </tr>
+    </repeat>
+    </tbody>
+    </table>
+</div>
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
