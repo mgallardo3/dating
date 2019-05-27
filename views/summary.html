@@ -17,7 +17,8 @@
 <!--Form to retrieve user's personal information with a form-->
 
 <!-- Create a container for the navigation bar -->
-<div class="navbar navbar-light bg-light"><p class="text-secondary">My Dating Site</p></div>
+<div class="navbar navbar-light bg-light"><p class="text-secondary">
+    <a href="Admin">Admin </a>My Dating Site</p></div>
 
 <!-- Create the main container for the summary table, photo and bio -->
 <div class="main container border mt-3 p-4">
@@ -52,10 +53,10 @@
                     <tr>
                         <th>Interests:
                             <check if="{{ $_SESSION['user']->getInDoorInterests() }}!='' ">
-                                {{ $_SESSION['user']->getInDoorInterests() }}
+                                {{ implode(', ',$_SESSION['user']->getInDoorInterests()) }}
                             </check>
                             <check if="{{ $_SESSION['user']->getOutDoorInterests() }}!='' ">
-                                {{ $_SESSION['user']->getOutDoorInterests() }}
+                                {{ implode(', ',$_SESSION['user']->getOutDoorInterests()) }}
                             </check>
                            </th>
                     </tr>
